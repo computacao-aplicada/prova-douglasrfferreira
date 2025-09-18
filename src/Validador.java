@@ -1,12 +1,13 @@
 public class Validador {
 
     public static boolean validarCPF(String cpf) {
-        if (cpf == null || cpf.trim().isEmpty()) return false;
-        String limpo = cpf.trim().replaceAll("[.-]", "");
-        if (!limpo.matches("\\d{11}")) return false;
-        if (limpo.chars().distinct().count() == 1) return false;
-        // TODO: calcular DV
-        return false;
+        if (cpf == null || cpf.trim().isEmpty()) return false; // Verifica se a entrada é valida, se não retorna falso
+        String limpo = cpf.trim().replaceAll("[.-]", ""); //Limpa o numero do CPF
+        if (!limpo.matches("\\d{11}")) return false; //Verifica se o CPF possui 11 digitos
+        if (limpo.chars().distinct().count() == 1) return false; //Verifica se o CPF não é uma sequencia de numeros
+
+        //Retorna o valor do CPF limpo para checarDigitos
+        return checarDigitos(limpo);
     }
 
     private static boolean checarDigitos(String cpf) {

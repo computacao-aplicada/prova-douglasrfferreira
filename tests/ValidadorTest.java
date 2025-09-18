@@ -1,16 +1,16 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ValidadorTest {
-
+    //Teste entradas CPF com máscara e sem máscara
     @Test
     void deveValidarCPFValido() {
         assertTrue(Validador.validarCPF("529.982.247-25"));
         assertTrue(Validador.validarCPF("52998224725"));
     }
-
+    //Testar entradas invalidas
     @Test
     void deveRejeitarEntradasInvalidas() {
         assertFalse(Validador.validarCPF(null));
@@ -18,13 +18,13 @@ public class ValidadorTest {
         assertFalse(Validador.validarCPF("529.982.247-2X"));
         assertFalse(Validador.validarCPF("00000000000"));
     }
-
+    //Testar tamanho incorretos
     @Test
     void deveRejeitarTamanhosIncorretos() {
         assertFalse(Validador.validarCPF("935.411.347-8"));   // 10 dígitos
         assertFalse(Validador.validarCPF("935.411.347-800")); // 12 dígitos
     }
-
+    //Teste numeros sequenciais e numero DV
     @Test
     void deveRejeitarDVIncorreto() {
         assertFalse(Validador.validarCPF("529.982.247-24"));
